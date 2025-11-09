@@ -26,10 +26,10 @@ TEST(PriorityQueueTest, ConstructorFromVector) {
     std::vector<int> data = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
     PriorityQueue pq(data, true);
     EXPECT_EQ(pq.size(), data.size());
-    EXPECT_EQ(pq.top(), 16);  // max-heap → max at top
+    EXPECT_EQ(pq.top(), 16); 
 
     PriorityQueue pq_min(data, false);
-    EXPECT_EQ(pq_min.top(), 1);  // min-heap → min at top
+    EXPECT_EQ(pq_min.top(), 1);
 }
 
 // Тест: push в max-heap поддерживает порядок
@@ -79,10 +79,8 @@ TEST(PriorityQueueTest, EmptyQueueThrows) {
     PriorityQueue pq;
     EXPECT_TRUE(pq.empty());
 
-    // top() on empty
     EXPECT_THROW(pq.top(), std::out_of_range);
 
-    // pop() on empty
     EXPECT_THROW(pq.pop(), std::out_of_range);
 }
 
@@ -127,7 +125,7 @@ TEST(PriorityQueueTest, Reserve) {
         pq.push(i);
     }
     EXPECT_EQ(pq.size(), 100u);
-    EXPECT_EQ(pq.top(), 99);  // max-heap
+    EXPECT_EQ(pq.top(), 99);
 }
 
 // Тест: operator== (сравнение содержимого + режима)
