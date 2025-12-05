@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_MODEL_OBJECTS_H_
+#define LABGAME_SRC_MODEL_OBJECTS_H_
 #include "ICreature.h"
 
 class Terrain : public ICreature {
@@ -37,3 +38,5 @@ public:
   CreatureCommand Act(int, int) override { return {deltaX, deltaY, nullptr}; }
   bool DeadInConflict(CreaturePtr conflictedObject) override;
 };
+
+#endif  // LABGAME_SRC_MODEL_OBJECTS_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_CONTROLLER_GAMECONTROLLER_H_
+#define LABGAME_SRC_CONTROLLER_GAMECONTROLLER_H_
 #include <memory>
 #include <SFML/System/Clock.hpp>
 
@@ -18,3 +19,5 @@ private:
   void HandleEvents();
   void Update();
 };
+
+#endif  // LABGAME_SRC_CONTROLLER_GAMECONTROLLER_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_MODEL_PLAYER_H_
+#define LABGAME_SRC_MODEL_PLAYER_H_
 #include "ICreature.h"
 
 class Player : public ICreature {
@@ -12,3 +13,5 @@ public:
 private:
   CreatureCommand TryMove(int newX, int newY, int deltaX, int deltaY);
 };
+
+#endif  // LABGAME_SRC_MODEL_PLAYER_H_

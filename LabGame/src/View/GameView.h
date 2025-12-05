@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_VIEW_GAMEVIEW_H_
+#define LABGAME_SRC_VIEW_GAMEVIEW_H_
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "TextureManager.h"
@@ -32,3 +33,5 @@ private:
   void DrawUI();
   void DrawScreens();
 };
+
+#endif  // LABGAME_SRC_VIEW_GAMEVIEW_H_

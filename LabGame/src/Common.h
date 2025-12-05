@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_COMMON_H_
+#define LABGAME_SRC_COMMON_H_
 #include <memory>
 #include <string>
 
@@ -14,3 +15,5 @@ struct CreatureCommand {
   int deltaY = 0;
   CreaturePtr transformTo = nullptr;
 };
+
+#endif  // LABGAME_SRC_COMMON_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_VIEW_TEXTUREMANAGER_H_
+#define LABGAME_SRC_VIEW_TEXTUREMANAGER_H_
 #include <SFML/Graphics.hpp>
 #include <map>
 #include <string>
@@ -17,3 +18,5 @@ private:
 public:
   sf::Texture& Get(const std::string& filename);
 };
+
+#endif  // LABGAME_SRC_VIEW_TEXTUREMANAGER_H_

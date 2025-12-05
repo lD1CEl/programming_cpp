@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_MODEL_GAMESTATE_H_
+#define LABGAME_SRC_MODEL_GAMESTATE_H_
 #include <vector>
 #include "../Common.h"
 #include <SFML/Window/Keyboard.hpp>
@@ -22,3 +23,5 @@ public:
 
   static bool IsOutOfBounds(int x, int y);
 };
+
+#endif  // LABGAME_SRC_MODEL_GAMESTATE_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LABGAME_SRC_MODEL_MONSTER_H_
+#define LABGAME_SRC_MODEL_MONSTER_H_
 #include "ICreature.h"
 
 class Monster : public ICreature {
@@ -31,3 +32,5 @@ public:
   bool DeadInConflict(CreaturePtr conflictedObject) override;
   CreatureCommand Act(int x, int y) override;
 };
+
+#endif  // LABGAME_SRC_MODEL_MONSTER_H_
