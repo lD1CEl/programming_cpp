@@ -1,0 +1,3 @@
+C:/Users/nat00/CLionProjects/programming_cpp/LabGame/cmake-build-debug/CMakeFiles/Digger.dir
+C:/Users/nat00/CLionProjects/programming_cpp/LabGame/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/nat00/CLionProjects/programming_cpp/LabGame/cmake-build-debug/CMakeFiles/rebuild_cache.dir

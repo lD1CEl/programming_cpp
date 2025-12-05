@@ -1,0 +1,3 @@
+C:/Users/nat00/CLionProjects/untitled5/out/build/x64-Debug/CMakeFiles/Digger.dir
+C:/Users/nat00/CLionProjects/untitled5/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/nat00/CLionProjects/untitled5/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

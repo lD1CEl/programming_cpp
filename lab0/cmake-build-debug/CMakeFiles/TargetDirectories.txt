@@ -1,0 +1,3 @@
+C:/Users/nat00/CLionProjects/programming_cpp/lab0/cmake-build-debug/CMakeFiles/word_counter.dir
+C:/Users/nat00/CLionProjects/programming_cpp/lab0/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/nat00/CLionProjects/programming_cpp/lab0/cmake-build-debug/CMakeFiles/rebuild_cache.dir

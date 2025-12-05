@@ -1,0 +1,21 @@
+# ninja log v6
+11	1413	7841563794187349	third_party/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	5b626d9c3cf79b6
+16	666	7841563794241094	CMakeFiles/lab1_tests.dir/src/priority_queue.cpp.obj	bcf3c72562f538ef
+22	1684	7841563794304107	CMakeFiles/lab1_tests.dir/tests/priority_queue_test.cpp.obj	d90ea60f95db46f5
+5	9146	7841563794131681	third_party/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	60db1052a3c5999f
+9148	12126	7841563885561023	lib/libgtest.a	cf5c8588fc369d53
+12126	12198	7841563915330941	lib/libgtest_main.a	b9d8f44b40beffd0
+12198	15757	7841563916062999	lab1_tests.exe	26d8607232a370b2
+8	423	7841567680418349	build.ninja	6330abf009109225
+11	781	7841570534811020	CMakeFiles/lab1_tests.dir/src/priority_queue.cpp.obj	bcf3c72562f538ef
+19	1868	7841570534897039	CMakeFiles/lab1_tests.dir/tests/priority_queue_test.cpp.obj	d90ea60f95db46f5
+1869	6054	7841570553386972	lab1_tests.exe	26d8607232a370b2
+8	561	7841574296101356	CMakeFiles/lab1_tests.dir/src/priority_queue.cpp.obj	bcf3c72562f538ef
+562	4013	7841574301641776	lab1_tests.exe	26d8607232a370b2
+15	582	7844030760251585	CMakeFiles/lab1_tests.dir/src/priority_queue.cpp.obj	bcf3c72562f538ef
+24	1290	7844030760331601	CMakeFiles/lab1_tests.dir/tests/priority_queue_test.cpp.obj	d90ea60f95db46f5
+1291	4463	7844030773002972	lab1_tests.exe	26d8607232a370b2
+5	378	7844032953384574	CMakeFiles/lab1_tests.dir/src/priority_queue.cpp.obj	bcf3c72562f538ef
+379	3468	7844032957116397	lab1_tests.exe	26d8607232a370b2
+8	1326	7844056418311097	CMakeFiles/lab1_tests.dir/src/priority_queue.cpp.obj	bcf3c72562f538ef
+1326	4640	7844056431492775	lab1_tests.exe	26d8607232a370b2
