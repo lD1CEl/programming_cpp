@@ -18,8 +18,8 @@ PriorityQueue::PriorityQueue(const std::vector<value_type>& data,
                              const bool max_heap)
     : heap_(data), is_max_heap_(max_heap) {
   if (!heap_.empty()) {
-    for (size_type i = (heap_.size() - 2) / 2; i != static_cast<size_type>(-1); --i) {
-      SiftDown(i);
+    for (size_type i = heap_.size() / 2; i > 0; --i) {
+      SiftDown(i - 1);
     }
   }
 }
@@ -32,6 +32,7 @@ bool PriorityQueue::HasHigherPriority(const value_type a,
 void PriorityQueue::SiftUp(size_type idx) {
   while (idx > 0) {
     const size_type parent_idx = Parent(idx);
+
     if (!HasHigherPriority(heap_[idx], heap_[parent_idx])) break;
     std::swap(heap_[parent_idx], heap_[idx]);
     idx = parent_idx;
