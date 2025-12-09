@@ -20,7 +20,7 @@ public:
     };
 
 protected:
-    static ProductType* OnUnknownType(const IdentifierType& id) {
+    static ProductType OnUnknownType(const IdentifierType& id) {
         throw Exception(id);
     }
 };
@@ -29,7 +29,7 @@ template
 <
     class AbstractProduct,
     typename IdentifierType,
-    typename ProductCreator = AbstractProduct* (*)(),
+    typename ProductCreator = AbstractProduct (*)(),
     template<typename, class> class FactoryErrorPolicy = DefaultFactoryError
 >
 class Factory : public FactoryErrorPolicy<IdentifierType, AbstractProduct> {
@@ -43,7 +43,7 @@ public:
         return associations_.erase(id) == 1;
     }
 
-    AbstractProduct* CreateObject(const IdentifierType& id) {
+    AbstractProduct CreateObject(const IdentifierType& id) {
         typename AssocMap::const_iterator i = associations_.find(id);
         if (i != associations_.end()) {
             return (i->second)();
