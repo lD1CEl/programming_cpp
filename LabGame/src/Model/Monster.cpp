@@ -2,6 +2,14 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Objects.h"
+#include "CreatureFactory.h"
+
+namespace {
+    std::shared_ptr<ICreature> CreateMonster() {
+        return std::make_shared<Monster>();
+    }
+    bool registered = CreatureFactory::Instance().Register('M', CreateMonster);
+}
 
 float Monster::timeUntilDig = 10.0f;
 const float Monster::DIG_INTERVAL = 10.0f;

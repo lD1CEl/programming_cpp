@@ -2,7 +2,15 @@
 #include "GameState.h"
 #include "Objects.h"
 #include "Monster.h"
+#include "CreatureFactory.h"
 #include <SFML/Window/Keyboard.hpp>
+
+namespace {
+    std::shared_ptr<ICreature> CreatePlayer() {
+        return std::make_shared<Player>();
+    }
+    bool registered = CreatureFactory::Instance().Register('P', CreatePlayer);
+}
 
 std::string Player::GetImageFileName() const {
   if (GameState::FireTimer > 0.0f) {

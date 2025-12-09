@@ -2,6 +2,24 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Monster.h"
+#include "CreatureFactory.h"
+
+namespace {
+    std::shared_ptr<ICreature> CreateTerrain() {
+        return std::make_shared<Terrain>();
+    }
+    bool registeredTerrain = CreatureFactory::Instance().Register('T', CreateTerrain);
+
+    std::shared_ptr<ICreature> CreateGold() {
+        return std::make_shared<Gold>();
+    }
+    bool registeredGold = CreatureFactory::Instance().Register('G', CreateGold);
+
+    std::shared_ptr<ICreature> CreateSack() {
+        return std::make_shared<Sack>();
+    }
+    bool registeredSack = CreatureFactory::Instance().Register('S', CreateSack);
+}
 
 // --- Terrain ---
 bool Terrain::DeadInConflict(CreaturePtr conflictedObject) {

@@ -3,10 +3,12 @@
 #include "Objects.h"
 #include "Player.h"
 #include "Monster.h"
+#include "CreatureFactory.h"
 #include <sstream>
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 void CreateMapFromString(const std::string& mapStr) {
   std::vector<std::string> rows;
@@ -37,16 +39,18 @@ void CreateMapFromString(const std::string& mapStr) {
       char c = row[x];
 
       CreaturePtr creature = nullptr;
-      switch(c) {
-        case 'P': creature = std::make_shared<Player>();
-             if (GameState::PlayerDirectionX == 0 && GameState::PlayerDirectionY == 0) GameState::PlayerDirectionX = 1;
-             break;
-        case 'T': creature = std::make_shared<Terrain>(); break;
-        case 'G': creature = std::make_shared<Gold>(); break;
-        case 'S': creature = std::make_shared<Sack>(); break;
-        case 'M': creature = std::make_shared<Monster>(); break;
-        default: creature = nullptr; break;
+      try {
+          if (c != ' ') {
+             creature = CreatureFactory::Instance().CreateObject(c);
+          }
+      } catch (const DefaultFactoryError<char, std::shared_ptr<ICreature>>::Exception&) {
+          creature = nullptr;
       }
+
+      if (std::dynamic_pointer_cast<Player>(creature)) {
+           if (GameState::PlayerDirectionX == 0 && GameState::PlayerDirectionY == 0) GameState::PlayerDirectionX = 1;
+      }
+
       GameState::Map[x][y] = creature;
     }
   }
@@ -196,7 +200,7 @@ void ExecuteTick() {
     }
   }
 
-  // --- FIRE SPAWN LOGIC ---
+  // --- FIRE SPAWN ---
   if (GameState::IsFiring) {
     GameState::IsFiring = false;
 
