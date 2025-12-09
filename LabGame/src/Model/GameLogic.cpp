@@ -8,7 +8,6 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
 void CreateMapFromString(const std::string& mapStr) {
   std::vector<std::string> rows;

@@ -1,6 +1,5 @@
 #include "TextureManager.h"
 #include "../Common.h"
-#include <iostream>
 
 sf::Texture& TextureManager::Get(const std::string& filename) {
   if (textures.find(filename) == textures.end()) {
