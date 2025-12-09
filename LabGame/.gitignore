@@ -1,0 +1,17 @@
+# CMake build directory
+cmake-build-debug/
+cmake-build-release/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# SFML library (don't commit, it's already in SFML-2.6.1 folder locally)
+SFML-2.6.1/
+
+# OS
+.DS_Store
+Thumbs.db
