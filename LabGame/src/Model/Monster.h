@@ -7,9 +7,10 @@ public:
   static float timeUntilDig;
   static const float DIG_INTERVAL;
   static bool isDiggerActive;
+  static constexpr const char* IMAGE_FILE = "images/Monster.png";
 
 public:
-  std::string GetImageFileName() const override { return "images/Monster.png"; }
+  std::string GetImageFileName() const override { return IMAGE_FILE; }
   int GetDrawingPriority() const override { return 1; }
 
   bool DeadInConflict(CreaturePtr conflictedObject) override;
@@ -18,7 +19,6 @@ public:
 protected:
   CreatureCommand BaseAct(int x, int y);
   CreatureCommand TryMoveMonster(int targetX, int targetY, int deltaX, int deltaY);
-  std::pair<int, int> FindPlayer();
 };
 
 class MonsterDigger : public Monster {

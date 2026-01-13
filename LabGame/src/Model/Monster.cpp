@@ -32,19 +32,9 @@ bool Monster::DeadInConflict(CreaturePtr conflictedObject) {
   return dies;
 }
 
-std::pair<int, int> Monster::FindPlayer() {
-  for (int x = 0; x < GameState::MapWidth; x++) {
-    for (int y = 0; y < GameState::MapHeight; y++) {
-      if (GameState::Map[x][y] && std::dynamic_pointer_cast<Player>(GameState::Map[x][y])) {
-        return {x, y};
-      }
-    }
-  }
-  return {-1, -1};
-}
-
 CreatureCommand Monster::TryMoveMonster(int targetX, int targetY, int deltaX, int deltaY) {
   if (GameState::IsOutOfBounds(targetX, targetY)) return {};
+
   auto target = GameState::Map[targetX][targetY];
   if (target && (std::dynamic_pointer_cast<Terrain>(target) ||
          std::dynamic_pointer_cast<Sack>(target) ||
@@ -58,8 +48,10 @@ CreatureCommand Monster::TryMoveMonster(int targetX, int targetY, int deltaX, in
 
 CreatureCommand Monster::BaseAct(int x, int y) {
   if (GameState::IsOver) return {};
-  auto playerPos = FindPlayer();
+
+  auto playerPos = GameState::GetPlayerPosition();
   if (playerPos.first == -1) return {};
+
   int px = playerPos.first;
   int py = playerPos.second;
 
@@ -68,6 +60,7 @@ CreatureCommand Monster::BaseAct(int x, int y) {
     auto cmd = TryMoveMonster(x + deltaX, y, deltaX, 0);
     if (cmd.deltaX != 0 || cmd.deltaY != 0) return cmd;
   }
+
   if (py != y) {
     int deltaY = (py > y) ? 1 : -1;
     auto cmd = TryMoveMonster(x, y + deltaY, 0, deltaY);
@@ -86,6 +79,7 @@ bool MonsterDigger::DeadInConflict(CreaturePtr conflictedObject) {
   if (std::dynamic_pointer_cast<Terrain>(conflictedObject) != nullptr) {
     return false;
   }
+
   if (std::dynamic_pointer_cast<Sack>(conflictedObject) != nullptr) {
     return false;
   }
@@ -103,7 +97,7 @@ CreatureCommand MonsterDigger::Act(int x, int y) {
     return CreatureCommand{0, 0, newCreature};
   }
 
-  auto playerPos = FindPlayer();
+  auto playerPos = GameState::GetPlayerPosition();
   int deltaX = 0;
   int deltaY = 0;
 

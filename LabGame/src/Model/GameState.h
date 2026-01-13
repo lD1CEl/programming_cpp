@@ -22,6 +22,7 @@ public:
   static bool IsLost;
 
   static bool IsOutOfBounds(int x, int y);
+  static std::pair<int, int> GetPlayerPosition();
 };
 
 #endif  // LABGAME_SRC_MODEL_GAMESTATE_H_

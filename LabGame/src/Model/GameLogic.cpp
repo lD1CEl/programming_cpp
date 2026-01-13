@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 void CreateMapFromString(const std::string& mapStr) {
   std::vector<std::string> rows;
@@ -42,7 +43,8 @@ void CreateMapFromString(const std::string& mapStr) {
           if (c != ' ') {
              creature = CreatureFactory::Instance().CreateObject(c);
           }
-      } catch (const DefaultFactoryError<char, std::shared_ptr<ICreature>>::Exception&) {
+      } catch (const DefaultFactoryError<char, std::shared_ptr<ICreature>>::Exception& e) {
+          std::cerr << "Error: Unknown creature type '" << e.GetId() << "' at map coordinates (" << x << ", " << y << ")" << std::endl;
           creature = nullptr;
       }
 

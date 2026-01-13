@@ -14,7 +14,7 @@ public:
         virtual const char* what() const noexcept {
             return "Unknown object type passed to Factory.";
         }
-        const IdentifierType GetId() { return unknownId_; }
+        IdentifierType GetId() const { return unknownId_; }
     private:
         IdentifierType unknownId_;
     };
