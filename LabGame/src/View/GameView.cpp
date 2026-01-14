@@ -34,7 +34,6 @@ void GameView::LoadResources() {
   }
   #endif
   
-  // Try relative path from source root or execution dir
   musicCandidates.push_back("../Digger.mp3");
 
   for (const auto& path : musicCandidates) {
