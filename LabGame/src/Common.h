@@ -5,7 +5,6 @@
 
 class IGameObject;
 using ObjectPtr = std::shared_ptr<IGameObject>;
-// Compatibility alias/transition
 using CreaturePtr = ObjectPtr; 
 
 const int TILE_SIZE = 32;
