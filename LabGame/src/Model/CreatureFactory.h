@@ -3,12 +3,12 @@
 
 #include "../Factory.h"
 #include "../Singleton.h"
-#include "ICreature.h"
+#include "IGameObject.h"
 #include <memory>
 
-typedef std::shared_ptr<ICreature> (*CreatureCreator)();
+typedef std::shared_ptr<IGameObject> (*CreatureCreator)();
 
-typedef Factory<std::shared_ptr<ICreature>, char, CreatureCreator> CreatureFactoryImpl;
+typedef Factory<std::shared_ptr<IGameObject>, char, CreatureCreator> CreatureFactoryImpl;
 
 typedef Singleton<CreatureFactoryImpl> CreatureFactory;
 

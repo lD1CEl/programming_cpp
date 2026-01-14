@@ -6,7 +6,7 @@
 #include <SFML/Window/Keyboard.hpp>
 
 namespace {
-    std::shared_ptr<ICreature> CreatePlayer() {
+    std::shared_ptr<IGameObject> CreatePlayer() {
         return std::make_shared<Player>();
     }
     bool registered = CreatureFactory::Instance().Register('P', CreatePlayer);
@@ -19,7 +19,7 @@ std::string Player::GetImageFileName() const {
   return "images/Digger.png";
 }
 
-CreatureCommand Player::Act(int x, int y) {
+ObjectCommand Player::Act(int x, int y) {
   int deltaX = 0;
   int deltaY = 0;
 
@@ -50,7 +50,7 @@ CreatureCommand Player::Act(int x, int y) {
   return {};
 }
 
-bool Player::DeadInConflict(CreaturePtr conflictedObject) {
+bool Player::DeadInConflict(ObjectPtr conflictedObject) {
   bool dies = (std::dynamic_pointer_cast<Sack>(conflictedObject) != nullptr ||
       std::dynamic_pointer_cast<Monster>(conflictedObject) != nullptr ||
       std::dynamic_pointer_cast<MonsterDigger>(conflictedObject) != nullptr);
@@ -66,7 +66,7 @@ bool Player::DeadInConflict(CreaturePtr conflictedObject) {
   return dies;
 }
 
-CreatureCommand Player::TryMove(int newX, int newY, int deltaX, int deltaY) {
+ObjectCommand Player::TryMove(int newX, int newY, int deltaX, int deltaY) {
   if (GameState::IsOutOfBounds(newX, newY)) return {};
   auto target = GameState::Map[newX][newY];
 

@@ -41,16 +41,35 @@ sf::Texture& TextureManager::Get(const std::string& filename) {
     }
 
     if (!loaded) {
-      std::uint8_t r=255, g=255, b=255;
-      if(filename.find("Terrain") != std::string::npos) { r=150; g=100; b=50; }
-      else if(filename.find("Digger") != std::string::npos) { r=0; g=0; b=255; }
-      else if(filename.find("Gold") != std::string::npos) { r=255; g=215; b=0; }
-      else if(filename.find("Sack") != std::string::npos) { r=100; g=100; b=100; }
-      else if(filename.find("Monster.png") != std::string::npos) { r=255; g=0; b=0; }
-      else if(filename.find("fire") != std::string::npos) { r=255; g=165; b=0; }
-      else if(filename.find("monster_digger") != std::string::npos) { r=100; g=0; b=150; }
-      else if(filename.find("win") != std::string::npos) { r=0; g=255; b=0; }
-      else if(filename.find("lost") != std::string::npos) { r=255; g=0; b=0; }
+      std::uint8_t r = 255, g = 255, b = 255;
+
+      struct ColorMapping {
+          const char* key;
+          std::uint8_t r;
+          std::uint8_t g;
+          std::uint8_t b;
+      };
+
+      const ColorMapping mappings[] = {
+          {"Terrain", 150, 100, 50},
+          {"Digger", 0, 0, 255},
+          {"Gold", 255, 215, 0},
+          {"Sack", 100, 100, 100},
+          {"Monster.png", 255, 0, 0},
+          {"fire", 255, 165, 0},
+          {"monster_digger", 100, 0, 150},
+          {"win", 0, 255, 0},
+          {"lost", 255, 0, 0}
+      };
+
+      for (const auto& mapping : mappings) {
+          if (filename.find(mapping.key) != std::string::npos) {
+              r = mapping.r;
+              g = mapping.g;
+              b = mapping.b;
+              break;
+          }
+      }
 
       sf::Image img;
       img.create(TILE_SIZE, TILE_SIZE, sf::Color(r, g, b));

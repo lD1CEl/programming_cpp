@@ -5,30 +5,30 @@
 #include "CreatureFactory.h"
 
 namespace {
-    std::shared_ptr<ICreature> CreateTerrain() {
+    std::shared_ptr<IGameObject> CreateTerrain() {
         return std::make_shared<Terrain>();
     }
     bool registeredTerrain = CreatureFactory::Instance().Register('T', CreateTerrain);
 
-    std::shared_ptr<ICreature> CreateGold() {
+    std::shared_ptr<IGameObject> CreateGold() {
         return std::make_shared<Gold>();
     }
     bool registeredGold = CreatureFactory::Instance().Register('G', CreateGold);
 
-    std::shared_ptr<ICreature> CreateSack() {
+    std::shared_ptr<IGameObject> CreateSack() {
         return std::make_shared<Sack>();
     }
     bool registeredSack = CreatureFactory::Instance().Register('S', CreateSack);
 }
 
 // --- Terrain ---
-bool Terrain::DeadInConflict(CreaturePtr conflictedObject) {
+bool Terrain::DeadInConflict(ObjectPtr conflictedObject) {
   return (std::dynamic_pointer_cast<Player>(conflictedObject) != nullptr ||
       std::dynamic_pointer_cast<MonsterDigger>(conflictedObject) != nullptr);
 }
 
 // --- Gold ---
-bool Gold::DeadInConflict(CreaturePtr conflictedObject) {
+bool Gold::DeadInConflict(ObjectPtr conflictedObject) {
   if (std::dynamic_pointer_cast<Player>(conflictedObject)) {
     GameState::Scores += 10;
   }
@@ -37,11 +37,11 @@ bool Gold::DeadInConflict(CreaturePtr conflictedObject) {
 }
 
 // --- Sack ---
-bool Sack::DeadInConflict(CreaturePtr conflictedObject) {
+bool Sack::DeadInConflict(ObjectPtr conflictedObject) {
   return (std::dynamic_pointer_cast<MonsterDigger>(conflictedObject) != nullptr);
 }
 
-CreatureCommand Sack::Act(int x, int y) {
+ObjectCommand Sack::Act(int x, int y) {
   if (y + 1 >= GameState::MapHeight) {
     if (fallDistance > 1) {
       fallDistance = 0;
@@ -57,9 +57,11 @@ CreatureCommand Sack::Act(int x, int y) {
     return {0, 1, nullptr};
   }
 
-  if (std::dynamic_pointer_cast<Player>(below) ||
-    std::dynamic_pointer_cast<Monster>(below) ||
-    std::dynamic_pointer_cast<MonsterDigger>(below))
+  bool isLivingCreatureBelow = std::dynamic_pointer_cast<Player>(below) ||
+                 std::dynamic_pointer_cast<Monster>(below) ||
+                 std::dynamic_pointer_cast<MonsterDigger>(below);
+
+  if (isLivingCreatureBelow)
   {
     if (fallDistance >= 1) {
       if (std::dynamic_pointer_cast<Monster>(below) ||
@@ -87,6 +89,6 @@ CreatureCommand Sack::Act(int x, int y) {
 }
 
 // --- Fire ---
-bool Fire::DeadInConflict(CreaturePtr conflictedObject) {
+bool Fire::DeadInConflict(ObjectPtr conflictedObject) {
   return conflictedObject != nullptr && std::dynamic_pointer_cast<Player>(conflictedObject) == nullptr;
 }

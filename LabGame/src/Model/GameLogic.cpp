@@ -31,19 +31,19 @@ void CreateMapFromString(const std::string& mapStr) {
     }
   }
   GameState::MapWidth = (int)maxWidth;
-  GameState::Map.resize(GameState::MapWidth, std::vector<CreaturePtr>(GameState::MapHeight, nullptr));
+  GameState::Map.resize(GameState::MapWidth, std::vector<ObjectPtr>(GameState::MapHeight, nullptr));
 
   for (int y = 0; y < GameState::MapHeight; y++) {
     const std::string& row = rows[y];
     for (int x = 0; x < (int)row.size(); x++) {
       char c = row[x];
 
-      CreaturePtr creature = nullptr;
+      ObjectPtr creature = nullptr;
       try {
           if (c != ' ') {
              creature = CreatureFactory::Instance().CreateObject(c);
           }
-      } catch (const DefaultFactoryError<char, std::shared_ptr<ICreature>>::Exception& e) {
+      } catch (const DefaultFactoryError<char, std::shared_ptr<IGameObject>>::Exception& e) {
           std::cerr << "Error: Unknown creature type '" << e.GetId() << "' at map coordinates (" << x << ", " << y << ")" << std::endl;
           creature = nullptr;
       }

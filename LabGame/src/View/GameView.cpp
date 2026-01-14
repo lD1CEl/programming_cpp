@@ -34,7 +34,8 @@ void GameView::LoadResources() {
   }
   #endif
   
-  musicCandidates.push_back("C:/Users/nat00/CLionProjects/untitled5/Digger.mp3");
+  // Try relative path from source root or execution dir
+  musicCandidates.push_back("../Digger.mp3");
 
   for (const auto& path : musicCandidates) {
     if (music.openFromFile(path)) {
@@ -133,7 +134,7 @@ void GameView::Render() {
 void GameView::DrawMap() {
   struct DrawItem {
     int x, y;
-    CreaturePtr c;
+    ObjectPtr c;
   };
   std::vector<DrawItem> items;
 

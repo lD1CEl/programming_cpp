@@ -3,7 +3,7 @@
 
 int GameState::MapWidth = 0;
 int GameState::MapHeight = 0;
-std::vector<std::vector<CreaturePtr>> GameState::Map;
+std::vector<std::vector<ObjectPtr>> GameState::Map;
 int GameState::Scores = 0;
 bool GameState::IsOver = false;
 sf::Keyboard::Key GameState::KeyPressed = sf::Keyboard::Key::Unknown;

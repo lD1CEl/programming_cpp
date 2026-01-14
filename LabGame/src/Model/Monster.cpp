@@ -5,7 +5,7 @@
 #include "CreatureFactory.h"
 
 namespace {
-    std::shared_ptr<ICreature> CreateMonster() {
+    std::shared_ptr<IGameObject> CreateMonster() {
         return std::make_shared<Monster>();
     }
     bool registered = CreatureFactory::Instance().Register('M', CreateMonster);
@@ -17,7 +17,7 @@ bool Monster::isDiggerActive = false;
 
 // --- Monster ---
 
-bool Monster::DeadInConflict(CreaturePtr conflictedObject) {
+bool Monster::DeadInConflict(ObjectPtr conflictedObject) {
   if (std::dynamic_pointer_cast<Monster>(conflictedObject) != nullptr ||
     std::dynamic_pointer_cast<MonsterDigger>(conflictedObject) != nullptr) {
     return false;
@@ -32,7 +32,7 @@ bool Monster::DeadInConflict(CreaturePtr conflictedObject) {
   return dies;
 }
 
-CreatureCommand Monster::TryMoveMonster(int targetX, int targetY, int deltaX, int deltaY) {
+ObjectCommand Monster::TryMoveMonster(int targetX, int targetY, int deltaX, int deltaY) {
   if (GameState::IsOutOfBounds(targetX, targetY)) return {};
 
   auto target = GameState::Map[targetX][targetY];
@@ -46,7 +46,7 @@ CreatureCommand Monster::TryMoveMonster(int targetX, int targetY, int deltaX, in
   return {deltaX, deltaY, nullptr};
 }
 
-CreatureCommand Monster::BaseAct(int x, int y) {
+ObjectCommand Monster::BaseAct(int x, int y) {
   if (GameState::IsOver) return {};
 
   auto playerPos = GameState::GetPlayerPosition();
@@ -69,13 +69,13 @@ CreatureCommand Monster::BaseAct(int x, int y) {
   return {};
 }
 
-CreatureCommand Monster::Act(int x, int y) {
+ObjectCommand Monster::Act(int x, int y) {
   return BaseAct(x, y);
 }
 
 // --- MonsterDigger ---
 
-bool MonsterDigger::DeadInConflict(CreaturePtr conflictedObject) {
+bool MonsterDigger::DeadInConflict(ObjectPtr conflictedObject) {
   if (std::dynamic_pointer_cast<Terrain>(conflictedObject) != nullptr) {
     return false;
   }
@@ -86,15 +86,15 @@ bool MonsterDigger::DeadInConflict(CreaturePtr conflictedObject) {
   return Monster::DeadInConflict(conflictedObject);
 }
 
-CreatureCommand MonsterDigger::Act(int x, int y) {
+ObjectCommand MonsterDigger::Act(int x, int y) {
   digTime -= TIME_PER_TICK;
 
   if (digTime <= 0.0f) {
     Monster::isDiggerActive = false;
     Monster::timeUntilDig = Monster::DIG_INTERVAL;
 
-    CreaturePtr newCreature = std::make_shared<Monster>();
-    return CreatureCommand{0, 0, newCreature};
+    ObjectPtr newCreature = std::make_shared<Monster>();
+    return ObjectCommand{0, 0, newCreature};
   }
 
   auto playerPos = GameState::GetPlayerPosition();

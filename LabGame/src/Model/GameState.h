@@ -8,7 +8,7 @@ class GameState {
 public:
   static int MapWidth;
   static int MapHeight;
-  static std::vector<std::vector<CreaturePtr>> Map;
+  static std::vector<std::vector<ObjectPtr>> Map;
   static int Scores;
   static bool IsOver;
   static sf::Keyboard::Key KeyPressed;

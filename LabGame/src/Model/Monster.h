@@ -13,12 +13,12 @@ public:
   std::string GetImageFileName() const override { return IMAGE_FILE; }
   int GetDrawingPriority() const override { return 1; }
 
-  bool DeadInConflict(CreaturePtr conflictedObject) override;
-  CreatureCommand Act(int x, int y) override;
+  bool DeadInConflict(ObjectPtr conflictedObject) override;
+  ObjectCommand Act(int x, int y) override;
 
 protected:
-  CreatureCommand BaseAct(int x, int y);
-  CreatureCommand TryMoveMonster(int targetX, int targetY, int deltaX, int deltaY);
+  ObjectCommand BaseAct(int x, int y);
+  ObjectCommand TryMoveMonster(int targetX, int targetY, int deltaX, int deltaY);
 };
 
 class MonsterDigger : public Monster {
