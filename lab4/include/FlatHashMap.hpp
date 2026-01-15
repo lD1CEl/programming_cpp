@@ -497,13 +497,9 @@ class FlatHashMap {
   }
 
   static int CountTrailingZeros(uint32_t mask) {
-#if defined(_MSC_VER)
     unsigned long index;
     _BitScanForward(&index, mask);
     return static_cast<int>(index);
-#else
-    return __builtin_ctz(mask);
-#endif
   }
   void SetCtrl(size_type idx, int8_t value) {
     ctrl_[idx] = value;
